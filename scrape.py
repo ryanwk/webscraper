@@ -26,3 +26,6 @@ containers = page_soup.findAll("div", {"class":"item-container"})
 # who makes the graphics card - grab the title
 for container in containers:
     brand = container.div.div.a.img["title"]
+
+    title_container = container.findAll("a", {"class":"item-title"})
+    product_name = title_container[0].text
