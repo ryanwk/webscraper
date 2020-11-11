@@ -15,4 +15,8 @@ uClient.close()
 page_soup = soup(page_html, "html.parser")
 
 # pop open any html element using this syntax
-page_soup.h1
+# e.g., page_soup.h1 brings up an h1 tag from the url specified
+
+
+# grab everything with the specified class
+containers = page_soup.findAll("div", {"class":"item-container"})
