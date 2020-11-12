@@ -23,9 +23,17 @@ containers = page_soup.findAll("div", {"class":"item-container"})
 # check length of containers
 # len(containers)
 
-# who makes the graphics card - grab the title
+# grab: brand, product name, and shipping
 for container in containers:
     brand = container.div.div.a.img["title"]
-
+    
     title_container = container.findAll("a", {"class":"item-title"})
     product_name = title_container[0].text
+    
+    shipping_container = container.findAll("li", {"class":"price-ship"})
+    shipping = shipping_container[0].text.strip()
+
+    print("brand :" + brand)
+    print("product name :" + product_name)
+    print("shipping :" + shipping)
+    
