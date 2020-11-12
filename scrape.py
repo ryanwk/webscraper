@@ -23,6 +23,14 @@ containers = page_soup.findAll("div", {"class":"item-container"})
 # check length of containers
 # len(containers)
 
+
+# create filename & headers to hold output in csv
+filename = "products.csv"
+f = open(filename, "w")
+# add new line at end of headers because csvs are delimitted by a new line
+headers = "brand, product_name, shipping \n"
+f.write(headers)
+
 # grab: brand, product name, and shipping
 for container in containers:
     brand = container.div.div.a.img["title"]
@@ -33,7 +41,10 @@ for container in containers:
     shipping_container = container.findAll("li", {"class":"price-ship"})
     shipping = shipping_container[0].text.strip()
 
-    print("brand :" + brand)
-    print("product name :" + product_name)
-    print("shipping :" + shipping)
+    print("brand: " + brand)
+    print("product name: " + product_name)
+    print("shipping: " + shipping)
     
+    f.write(brand + "," + product_name.replace(",", "|") + "," + shipping + "\n")
+# always close the file
+f.close()
